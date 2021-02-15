@@ -23,7 +23,7 @@ apolloServer.applyMiddleware({ app, path: '/v1/api'});
 app.get('/', (req, res) => {
     res.send('Welcome to the server!!!')
 })
-const port = process.env.port || 4000
+const port = process.env.PORT || 4000
 
 app.listen(port, () => {
     console.log(`Server Start at ${Date()}`);
