@@ -1,13 +1,14 @@
 'use strict';
-
+const bcrypt = require('bcrypt');
 const faker = require('faker');
 faker.locale = "id_ID";
+const yourPassword = faker.internet.password();
 
 const users = [...Array(8)].map((user) => {
   return {
     username: faker.internet.userName(),
     email: faker.internet.email(),
-    password: faker.internet.password(),
+    password: bcrypt.hashSync(yourPassword, 10),
     role: 'user',
     createdAt: faker.date.recent(),
     updatedAt: faker.date.recent()

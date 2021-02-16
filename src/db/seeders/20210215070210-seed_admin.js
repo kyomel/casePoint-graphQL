@@ -2,6 +2,8 @@
 
 const faker = require('faker');
 faker.locale = "id_ID";
+const bcrypt = require("bcrypt");
+const yourpassword = 'admin123';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -16,11 +18,12 @@ module.exports = {
       await queryInterface.bulkInsert('users', [{
         username: 'admin',
         email: 'admin@mail.com',
-        password: 'admin123',
+        password: bcrypt.hashSync(yourpassword, 10),
         role: 'admin',
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent()
-      }])
+      }]
+      )
   },
 
   down: async (queryInterface, Sequelize) => {

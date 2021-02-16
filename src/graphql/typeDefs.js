@@ -11,6 +11,7 @@ const typeDefs = gql`
         user_id: Int
         title: String
         description: String
+        todoitems: [TodoItem]
     }
 
     type TodoItem {
@@ -29,12 +30,13 @@ const typeDefs = gql`
         users: [User]
         todos: [Todo]
         todoitems: [TodoItem]
-
+        todoById(id: Int!): Todo
     }
 
     type Mutation {
         registerUser(username:String!, email:String!, password:String!, role:String!): User
         loginUser(username:String!, password: String!): UserLogin
+        updateTodo(id: Int!, title:String!, description:String!): Todo
     }
 `;
 module.exports = typeDefs;
